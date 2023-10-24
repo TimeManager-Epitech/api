@@ -7,7 +7,7 @@ defmodule TimeManager.Clock do
     field :time, :naive_datetime
     field :user_id, :id
 
-    timestamps(type: :utc_datetime)
+    timestamps()
   end
 
   @doc false
