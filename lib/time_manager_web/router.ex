@@ -24,6 +24,7 @@ defmodule TimeManagerWeb.Router do
     pipe_through :api
 
     resources "/users", UserController, except: [:new, :edit]
+    resources "/clocks", ClockController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.
