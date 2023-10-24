@@ -18,6 +18,6 @@ defmodule TimeManager.StringDateTime do
     def load(date), do: {:ok, date}
     def load(_), do: :error
 
-    def dump(date), do: {:ok, NaiveDateTime.to_string(date)}
+    def dump(date), do: {:ok, date}
     def dump(_), do: :error
 end
