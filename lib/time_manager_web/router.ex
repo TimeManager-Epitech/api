@@ -20,6 +20,12 @@ defmodule TimeManagerWeb.Router do
     get "/", PageController, :home
   end
 
+  scope "/api", TimeManagerWeb do
+    pipe_through :api
+
+    resources "/users", UserController, except: [:new, :edit]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", TimeManagerWeb do
   #   pipe_through :api
