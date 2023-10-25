@@ -19,7 +19,8 @@ defmodule TimeManagerWeb.ClockJSON do
     %{
       id: clock.id,
       status: clock.status,
-      time: clock.time
+      time: clock.time,
+      user: clock.user
     }
   end
 end

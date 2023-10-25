@@ -34,6 +34,9 @@ defmodule TimeManagerWeb.Router do
     post "/working_times/:user_id", WorkingTimeController, :create
     put "/working_times/:id", WorkingTimeController, :update
     delete "/working_times/:id", WorkingTimeController, :delete
+    
+    get "/clocks/:user_id", ClockController, :show
+    post "/clocks/:user_id", ClockController, :create
 
     resources "/clocks", ClockController, except: [:new, :edit]
   end
