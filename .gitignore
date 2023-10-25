@@ -18,3 +18,6 @@
 
 erl_crash.dump
 phoenix-*.ez
+
+Api.Dockerfile
+.dockerignore

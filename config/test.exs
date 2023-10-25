@@ -8,7 +8,7 @@ import Config
 config :time_manager, TimeManager.Repo,
   username: "postgres",
   password: "postgres",
-  hostname: "localhost",
+  hostname: "database",
   database: "time_manager_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
@@ -16,7 +16,7 @@ config :time_manager, TimeManager.Repo,
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :time_manager, TimeManagerWeb.Endpoint,
-  http: [ip: {127, 0, 0, 1}, port: 4002],
+  http: [ip: {0, 0, 0, 0}, port: 4002],
   secret_key_base: "AeE051f1h1dpsrUcsgoYkz3FJ4dWlPsH6wpual8bWGJZFtZUe9dM94esZ0KLkNyK",
   server: false
 
