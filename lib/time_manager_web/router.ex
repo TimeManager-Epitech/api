@@ -23,22 +23,33 @@ defmodule TimeManagerWeb.Router do
   scope "/api", TimeManagerWeb do
     pipe_through :api
 
-    get "/users", UserController, :show
-    get "/users/:user_id", UserController, :show
-    post "/users", UserController, :create
-    put "/users/:user_id", UserController, :update
-    delete "/users/:user_id", UserController, :delete
+    scope "/users" do
+      get "/", UserController, :show
+      post "/", UserController, :create
 
-    get "/working_times/:user_id", WorkingTimeController, :index
-    get "/working_times/:user_id/:id", WorkingTimeController, :show
-    post "/working_times/:user_id", WorkingTimeController, :create
-    put "/working_times/:id", WorkingTimeController, :update
-    delete "/working_times/:id", WorkingTimeController, :delete
-    
-    get "/clocks/:user_id", ClockController, :show
-    post "/clocks/:user_id", ClockController, :create
+      scope "/:user_id" do
+        get "/", UserController, :show
+        put "/", UserController, :update
+        delete "/", UserController, :delete
+      end
+    end
 
-    resources "/clocks", ClockController, except: [:new, :edit]
+    scope "/working_times" do
+      scope "/:id" do
+        put "/", WorkingTimeController, :update
+        delete "/", WorkingTimeController, :delete
+      end
+      scope "/:user_id" do
+        get "/", WorkingTimeController, :index
+        get "/:id", WorkingTimeController, :show
+        post "/", WorkingTimeController, :create
+      end
+    end
+
+    scope "/clocks/:user_id" do
+      get "/", ClockController, :show
+      post "/", ClockController, :create
+    end
   end
 
   # Other scopes may use custom stacks.
