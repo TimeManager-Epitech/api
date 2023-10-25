@@ -25,23 +25,30 @@ defmodule TimeManagerWeb.Router do
 
     scope "/users" do
       get "/", UserController, :show
-      get "/:user_id", UserController, :show
       post "/", UserController, :create
-      put "/:user_id", UserController, :update
-      delete "/:user_id", UserController, :delete
+
+      scope "/:user_id" do
+        get "/", UserController, :show
+        put "/", UserController, :update
+        delete "/", UserController, :delete
+      end
     end
 
     scope "/working_times" do
-      get "/:user_id", WorkingTimeController, :index
-      get "/:user_id/:id", WorkingTimeController, :show
-      post "/:user_id", WorkingTimeController, :create
-      put "/:id", WorkingTimeController, :update
-      delete "/:id", WorkingTimeController, :delete
+      scope "/:id" do
+        put "/", WorkingTimeController, :update
+        delete "/", WorkingTimeController, :delete
+      end
+      scope "/:user_id" do
+        get "/", WorkingTimeController, :index
+        get "/:id", WorkingTimeController, :show
+        post "/", WorkingTimeController, :create
+      end
     end
 
-    scope "/clocks" do
-      get "/:user_id", ClockController, :show
-      post "/:user_id", ClockController, :create
+    scope "/clocks/:user_id" do
+      get "/", ClockController, :show
+      post "/", ClockController, :create
     end
   end
 
