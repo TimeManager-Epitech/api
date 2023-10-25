@@ -101,4 +101,32 @@ defmodule TimeManager.Clocks do
   def change_clock(%Clock{} = clock, attrs \\ %{}) do
     Clock.changeset(clock, attrs)
   end
+
+    @doc """
+  Returns an array of clock byID for tracking clock changes.
+
+  ## Examples
+
+      iex> getClockByUserID(userID)
+     [
+      %TimeManager.Clocks.Clock{
+        __meta__: #Ecto.Schema.Metadata<:loaded, "clocks">,
+        id: 22,
+        status: true,
+        time: ~N[2023-10-25 10:00:00],
+        user: 1,
+        inserted_at: ~U[2023-10-25 09:53:40Z],
+        updated_at: ~U[2023-10-25 09:53:40Z]
+      }
+
+  """
+  def getClockByUserID(userID) do
+    Repo.all(
+      from(
+       c in Clock,
+       where: c.user == ^userID,
+       select: c
+      )
+    )
+  end
 end
