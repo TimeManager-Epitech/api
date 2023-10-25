@@ -29,11 +29,16 @@ defmodule TimeManagerWeb.Router do
     put "/users/:user_id", UserController, :update
     delete "/users/:user_id", UserController, :delete
 
+    get "/working_times/:user_id", WorkingTimeController, :index
+    get "/working_times/:user_id/:id", WorkingTimeController, :show
+    post "/working_times/:user_id", WorkingTimeController, :create
+    put "/working_times/:id", WorkingTimeController, :update
+    delete "/working_times/:id", WorkingTimeController, :delete
+    
     get "/clocks/:user_id", ClockController, :show
     post "/clocks/:user_id", ClockController, :create
 
     resources "/clocks", ClockController, except: [:new, :edit]
-    resources "/working_times", WorkingTimeController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.
