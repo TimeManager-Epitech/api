@@ -16,7 +16,7 @@ config :time_manager, TimeManagerWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
-    formats: [html: TimeManagerWeb.ErrorHTML, json: TimeManagerWeb.ErrorJSON],
+    formats: [json: TimeManagerWeb.ErrorJSON],
     layout: false
   ],
   pubsub_server: TimeManager.PubSub,
